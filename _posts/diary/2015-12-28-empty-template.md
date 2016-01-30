@@ -6,4 +6,4 @@ categories: diary
 
 ## Empty diary template
 
-Empty post template
+hello,world
