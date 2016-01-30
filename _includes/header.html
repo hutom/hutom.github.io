@@ -1,22 +1,43 @@
-{% if page.title == "Home" or page.title == "Blog" %}{% assign x = true %}{% endif %}
+<header>
 
-{% if x == true %}
-    <header class="home__header">
-        <img alt="{{ site.name }}" src="{{ site.url }}/{{ site.picture }}" />
+<!-- navbar -->
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{{ site.baseurl }}/">{{ site.title }}</a>
+      <p class="navbar-text"></p>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
 
-        <h1>{{ site.name }}</h1>
-        <h2>{{ site.bio }}</h2>
+        {% if page.url == "/index.html" %}
+          <li class="active">
+          {% else %}
+          <li>
+        {% endif %}
+        <a href="{{ site.baseurl }}/">Home</a></li>
 
-        <div class="home__header-social">
-            <a href="http://facebook.com/{{ site.facebook }}" target="_blank"><svg class="icon icon-facebook"><use xlink:href="#icon-facebook"></use></svg></a>
-            <a href="http://twitter.com/{{ site.twitter }}" target="_blank"><svg class="icon icon-twitter"><use xlink:href="#icon-twitter"></use></svg></a>
-            <a href="https://github.com/{{ site.github }}" target="_blank"><svg class="icon icon-github"><use xlink:href="#icon-github"></use></svg></a>
-            <a href="http://instagram.com/{{ site.instagram }}" target="_blank"><svg class="icon icon-instagram"><use xlink:href="#icon-instagram"></use></svg></a>
-            <a href="http://linkedin.com/{{ site.linkedin }}" target="_blank"><svg class="icon icon-linkedin"><use xlink:href="#icon-linkedin"></use></svg></a>
-            <a href="http://youtube.com/{{ site.youtube }}" target="_blank"><svg class="icon icon-youtube"><use xlink:href="#icon-youtube"></use></svg></a>
-            <a href="mailto:{{ site.email }}" target="_blank"><svg class="icon icon-mail"><use xlink:href="#icon-mail"></use></svg></a>
-        </div>
-    </header>
-{% endif %}
+        {% for p in site.pages %}
+          {% if p.title %}
+            {% if p.url == page.url %}
+              <li class="active">
+              {% else %}
+              <li>
+            {% endif %}
+            <a href="{{ p.url | prepend: site.baseurl }}"><span class="glyphicon {{ p.icon }}"></span> {{ p.title }}</a></li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 
-{% include nav.html %}
+</header>
